@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./NasaPhoto.css"
-import { Jumbotron, Collapse, Button, CardBody, Card } from "reactstrap";
+import { Jumbotron, Collapse, Button, CardBody, Card } from "reactstrap"
+require ('dotenv').config()
 
 const apiKey = process.env.REACT_APP_NASA_KEY
 
@@ -24,8 +25,8 @@ export default function NasaPhoto  ()  {
     if (!photoData) return <div />
     return(
       <>
-      <div class="vanillaCSSLayout">
-      <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>Blast Off!</Button>
+      <div className="text-center">
+      <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>{photoData.title}</Button>
       <Collapse isOpen={isOpen}>
         <Card>
         <Jumbotron>
@@ -33,6 +34,7 @@ export default function NasaPhoto  ()  {
             {photoData.media_type === "image" ? (
             <img
                 
+                width={"100%"}
                 src={photoData.url}
                 alt={photoData.title}/>
                 ) : (
@@ -46,9 +48,7 @@ export default function NasaPhoto  ()  {
                         className="photo"
                     />
                 )}
-
-            <h1>{photoData.title}</h1>
-            <p>{photoData.date}</p>
+            <h2>{photoData.date}</h2>
             <p className="lead">{photoData.explanation}</p>
         </CardBody>
         </Jumbotron>
